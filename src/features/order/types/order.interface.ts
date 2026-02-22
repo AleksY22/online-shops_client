@@ -29,7 +29,7 @@ export interface IPaymentResponse {
   amount: IAmount;
   recipient: IRecipient;
   payment_method: IPaymentMethod;
-  ceated_at: Date;
+  created_at: Date;
   confirmation: IConfirmation;
 }
 
@@ -40,7 +40,7 @@ export enum OrderStatus {
 
 export interface IOrder {
   id: string;
-  createAt: string;
+  createdAt: string;
   items: ICartItem[];
   status: OrderStatus;
   user: IUser;
