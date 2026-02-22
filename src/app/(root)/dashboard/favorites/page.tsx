@@ -1,0 +1,14 @@
+import { Metadata } from 'next';
+
+import { NO_INDEX_PAGE } from '@/shared/constants/seo.constants';
+
+import { Favorites } from './favorites';
+
+export const metadata: Metadata = {
+  title: 'Избранное',
+  ...NO_INDEX_PAGE,
+};
+
+export default function FavoritesPage() {
+  return <Favorites />;
+}
