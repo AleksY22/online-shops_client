@@ -25,6 +25,10 @@ const nextConfig: NextConfig = {
         hostname: 'lh3.googleusercontent.com',
       },
       {
+        protocol: 'https',
+        hostname: 'online-shops-liard.vercel.app',
+      },
+      {
         protocol: 'http',
         hostname: 'localhost',
         port: '5000',
