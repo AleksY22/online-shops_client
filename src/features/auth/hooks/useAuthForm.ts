@@ -1,3 +1,5 @@
+'use client';
+
 import { DASHBOARD_URL } from '../../../shared/config/url.config';
 import { IAuthForm } from '../../auth/types/auth.interface';
 import { authService } from '../services/auth.service';
