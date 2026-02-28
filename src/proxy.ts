@@ -7,9 +7,11 @@ export async function proxy(request: NextRequest) {
   const refreshToken = request.cookies.get(EnumTokens.REFRESH_TOKEN)?.value;
 
   const isAuthPage = request.url.includes(PUBLIC_URL.auth());
+  console.log(isAuthPage);
 
   if (isAuthPage) {
     if (refreshToken) {
+      console.log(2);
       return NextResponse.redirect(new URL(PUBLIC_URL.home(), request.url));
     }
 
@@ -17,6 +19,7 @@ export async function proxy(request: NextRequest) {
   }
 
   if (refreshToken === undefined) {
+    console.log(3);
     return NextResponse.redirect(new URL(PUBLIC_URL.auth(), request.url));
   }
 
