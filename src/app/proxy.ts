@@ -3,11 +3,9 @@ import { PUBLIC_URL } from '../shared/config/url.config';
 import { type NextRequest, NextResponse } from 'next/server';
 
 export function proxy(request: NextRequest) {
-  console.log(1);
   const refreshToken = request.cookies.get(EnumTokens.REFRESH_TOKEN)?.value;
 
   const isAuthPage = request.url.includes(PUBLIC_URL.auth());
-  console.log(isAuthPage);
 
   if (isAuthPage) {
     if (refreshToken) {
@@ -19,7 +17,6 @@ export function proxy(request: NextRequest) {
   }
 
   if (refreshToken === undefined) {
-    console.log(3);
     return NextResponse.redirect(new URL(PUBLIC_URL.auth(), request.url));
   }
 
@@ -27,5 +24,5 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/store/:path*', '/auth/:path*'],
+  matcher: ['/dashboard/:path*', '/store/:path*', '/auth'],
 };

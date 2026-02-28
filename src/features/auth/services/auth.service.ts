@@ -1,4 +1,4 @@
-import { axiosClassic, axiosWithAuth } from '@/shared/api/api.interceptors';
+import { axiosClassic } from '@/shared/api/api.interceptors';
 import { API_URL } from '@/shared/config/api.config';
 
 import {
@@ -10,7 +10,7 @@ import { IAuthForm, IAuthResponse } from '@/features/auth/types/auth.interface';
 class AuthService {
   //===============================================
   async main(type: 'login' | 'register', data: IAuthForm) {
-    const response = await axiosWithAuth<IAuthResponse>({
+    const response = await axiosClassic<IAuthResponse>({
       url: API_URL.auth(`${type}`),
       method: 'POST',
       data,
@@ -24,7 +24,7 @@ class AuthService {
 
   //=================================================
   async getNewTokens() {
-    const response = await axiosWithAuth<IAuthResponse>({
+    const response = await axiosClassic<IAuthResponse>({
       url: API_URL.auth('login/access-token'),
       method: 'POST',
     });
