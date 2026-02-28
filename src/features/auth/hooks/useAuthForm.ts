@@ -22,7 +22,7 @@ export function useAuthForm(isReg: boolean) {
       authService.main(isReg ? 'register' : 'login', data),
     onSuccess() {
       form.reset();
-      toast.success('Авторизация прошла успешно!!');
+      toast.success('Авторизация прошла успешно!');
       router.replace(DASHBOARD_URL.home());
     },
     onError() {
