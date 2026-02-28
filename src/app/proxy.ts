@@ -1,7 +1,6 @@
+import { EnumTokens } from '../features/auth/services/auth-token.service';
+import { PUBLIC_URL } from '../shared/config/url.config';
 import { type NextRequest, NextResponse } from 'next/server';
-
-import { EnumTokens } from './features/auth/services/auth-token.service';
-import { PUBLIC_URL } from './shared/config/url.config';
 
 export function proxy(request: NextRequest) {
   console.log(1);
