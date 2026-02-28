@@ -21,7 +21,7 @@ export function useAuthForm(isReg: boolean) {
     onSuccess() {
       form.reset();
       toast.success('Авторизация прошла успешно!');
-      router.replace(DASHBOARD_URL.home());
+      router.push(DASHBOARD_URL.home());
     },
     onError() {
       // if (error.message) {
