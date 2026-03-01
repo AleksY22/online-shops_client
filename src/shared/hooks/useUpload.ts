@@ -11,6 +11,7 @@ export function useUpload(onChange: (value: string[]) => void) {
     mutationKey: ['upload files'],
     mutationFn: (formData: FormData) => fileService.upload(formData),
     onSuccess(data) {
+      console.log(data);
       onChange(data.map((file) => file.url));
     },
     onError() {
