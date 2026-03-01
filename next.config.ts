@@ -29,8 +29,8 @@ const nextConfig: NextConfig = {
         hostname: 'online-shops-liard.vercel.app',
       },
       {
-        protocol: 'http',
-        hostname: 'localhost',
+        protocol: 'https',
+        hostname: 'online-shops-liard.vercel.app',
         port: '5000',
         pathname: '/uploads/**',
       },
