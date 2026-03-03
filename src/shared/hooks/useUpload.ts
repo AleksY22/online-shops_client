@@ -1,19 +1,22 @@
 import { useMutation } from '@tanstack/react-query';
-import type { PutBlobResult } from '@vercel/blob';
+import { PutBlobResult } from '@vercel/blob';
 import { ChangeEvent, useCallback, useMemo, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 
-import { fileService } from '@/features/file/services/file.service';
+import { upload } from '@/features/file/services/file.service';
 
-export function useUpload(onChange: (value: string[]) => void) {
+export function useUpload() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [blob, setBlob] = useState<PutBlobResult | null>(null);
 
   const { mutate: uploadFiles, isPending: isUploading } = useMutation({
     mutationKey: ['upload files'],
-    mutationFn: (formData: FormData) => fileService(formData),
-    onSuccess(newBlob) {
-      setBlob(newBlob);
+    //  mutationFn: (formData: FormData) => fileService.upload(formData),
+    mutationFn: (file: File) => upload(file),
+    onSuccess(data) {
+      // onChange(data.map((file) => file.url));
+
+      setBlob(data);
     },
     onError() {
       toast.error('Ошибка при загрузке файлов!');
@@ -22,16 +25,18 @@ export function useUpload(onChange: (value: string[]) => void) {
 
   const handleFileChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
-      const selectedFiles = event.target.files;
+      const file = event.target.files![0];
 
-      if (selectedFiles) {
-        const fileArray = Array.from(selectedFiles);
+      // const selectedFiles = event.target.files;
 
-        const formData = new FormData();
-        fileArray.forEach((file) => formData.append('files', file));
+      // if (selectedFiles) {
+      //   const fileArray = Array.from(selectedFiles);
 
-        uploadFiles(formData);
-      }
+      //   const formData = new FormData();
+      //   fileArray.forEach((file) => formData.append('files', file));
+
+      uploadFiles(file);
+      // }
     },
     [uploadFiles],
   );

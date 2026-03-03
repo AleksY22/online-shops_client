@@ -1,18 +1,14 @@
 import { PutBlobResult } from '@vercel/blob';
 
-import { API_URL } from '@/shared/config/api.config';
-
-export async function fileService(file: FormData) {
-  const response = await fetch(`${API_URL.files()}?filename=${file}`, {
+export async function upload(file: File) {
+  const response = await fetch(`/api/upload?filename=${file.name}`, {
     method: 'POST',
     body: file,
   });
-  const newBlob = (await response.json()) as PutBlobResult;
-  return newBlob;
+  return (await response.json()) as PutBlobResult;
 }
 
 // import { IFile } from '../types/file.interface';
-
 // import { axiosWithAuth } from '@/shared/api/api.interceptors';
 // import { API_URL } from '@/shared/config/api.config';
 

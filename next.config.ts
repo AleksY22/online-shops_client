@@ -28,6 +28,7 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'online-shops-liard.vercel.app',
       },
+      { hostname: '*.public.blob.vercel-storage.com' },
       {
         protocol: 'https',
         hostname: 'online-shops-liard.vercel.app',
