@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 
 import { upload } from '@/features/file/services/file.service';
 
-export function useUpload() {
+export function useUpload(onChange: (value: string) => void) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [blob, setBlob] = useState<PutBlobResult | null>(null);
 
@@ -15,6 +15,7 @@ export function useUpload() {
     mutationFn: (file: FormData) => upload(file),
     onSuccess(data) {
       // onChange(data.map((file) => file.url));
+      onChange(data.url);
 
       setBlob(data);
     },
@@ -53,8 +54,16 @@ export function useUpload() {
       isUploading,
       fileInputRef,
       blob,
+      onChange,
     }),
-    [isUploading, handleButtonClick, handleFileChange, fileInputRef, blob],
+    [
+      isUploading,
+      handleButtonClick,
+      handleFileChange,
+      fileInputRef,
+      blob,
+      onChange,
+    ],
   );
 }
 

@@ -51,6 +51,7 @@ export function ProductForm({ product, categories, colors }: ProductFormProps) {
     values: {
       title: product?.title || '',
       description: product?.description || '',
+      // images: product?.images || [],
       images: product?.images || [],
       price: product?.price || 0,
       categoryId: product?.category.id || '',

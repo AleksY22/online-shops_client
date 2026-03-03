@@ -8,17 +8,17 @@ import { Button } from './ui';
 interface ImageUploadProps {
   isDisabled: boolean;
   value: string[];
-  onChange: (value: string[]) => void;
+  onChange: (value: string) => void;
 }
 
-export function ImageUpload({ isDisabled, value }: ImageUploadProps) {
+export function ImageUpload({ isDisabled, value, onChange }: ImageUploadProps) {
   const {
     handleButtonClick,
     handleFileChange,
     isUploading,
     fileInputRef,
     blob,
-  } = useUpload();
+  } = useUpload(onChange);
   return (
     <div>
       {blob && (
