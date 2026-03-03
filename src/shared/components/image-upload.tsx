@@ -8,20 +8,15 @@ import { Button } from './ui';
 interface ImageUploadProps {
   isDisabled: boolean;
   value: string[];
-  onChange: (value: string) => void;
+  onChange: (value: string[]) => void;
 }
 
 export function ImageUpload({ isDisabled, value, onChange }: ImageUploadProps) {
-  const {
-    handleButtonClick,
-    handleFileChange,
-    isUploading,
-    fileInputRef,
-    blob,
-  } = useUpload(onChange);
+  const { handleButtonClick, handleFileChange, isUploading, fileInputRef } =
+    useUpload(onChange);
   return (
     <div>
-      {blob && (
+      {/* {blob && (
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6 gap-5">
           <div className="relative w-50 h-50 rounded-md overflow-hidden">
             <Image
@@ -32,8 +27,8 @@ export function ImageUpload({ isDisabled, value, onChange }: ImageUploadProps) {
             />
           </div>
         </div>
-      )}
-      {/* <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6 gap-5">
+      )} */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6 gap-5">
         {value.map((url) => (
           <div
             key={url}
@@ -42,7 +37,7 @@ export function ImageUpload({ isDisabled, value, onChange }: ImageUploadProps) {
             <Image src={url} alt="Картинка" fill className="object-cover" />
           </div>
         ))}
-      </div> */}
+      </div>
       <Button
         type="button"
         disabled={isDisabled || isUploading}

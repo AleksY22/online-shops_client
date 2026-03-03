@@ -1,23 +1,20 @@
 import { useMutation } from '@tanstack/react-query';
-import { PutBlobResult } from '@vercel/blob';
-import { ChangeEvent, useCallback, useMemo, useRef, useState } from 'react';
+//import { PutBlobResult } from '@vercel/blob';
+import { ChangeEvent, useCallback, useMemo, useRef } from 'react';
 import toast from 'react-hot-toast';
 
 import { upload } from '@/features/file/services/file.service';
 
-export function useUpload(onChange: (value: string) => void) {
+export function useUpload(onChange: (value: string[]) => void) {
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [blob, setBlob] = useState<PutBlobResult | null>(null);
+  //   const [blob, setBlob] = useState<PutBlobResult | null>(null);
 
   const { mutate: uploadFiles, isPending: isUploading } = useMutation({
     mutationKey: ['upload files'],
     //  mutationFn: (formData: FormData) => fileService.upload(formData),
-    mutationFn: (file: FormData) => upload(file),
+    mutationFn: (formData: FormData) => upload(formData),
     onSuccess(data) {
-      // onChange(data.map((file) => file.url));
-      onChange(data.url);
-
-      setBlob(data);
+      onChange(data.map((file) => file));
     },
     onError() {
       toast.error('Ошибка при загрузке файлов!');
@@ -26,19 +23,16 @@ export function useUpload(onChange: (value: string) => void) {
 
   const handleFileChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
-      const file = event.target.files![0];
+      const selectedFiles = event.target.files;
 
-      // const selectedFiles = event.target.files;
+      if (selectedFiles) {
+        const fileArray = Array.from(selectedFiles);
 
-      // if (selectedFiles) {
-      //   const fileArray = Array.from(selectedFiles);
+        const formData = new FormData();
+        fileArray.forEach((file) => formData.append('files', file));
 
-      const formData = new FormData();
-      //   fileArray.forEach((file) => formData.append('files', file));
-      formData.append('file', file);
-
-      uploadFiles(formData);
-      // }
+        uploadFiles(formData);
+      }
     },
     [uploadFiles],
   );
@@ -53,17 +47,8 @@ export function useUpload(onChange: (value: string) => void) {
       handleFileChange,
       isUploading,
       fileInputRef,
-      blob,
-      onChange,
     }),
-    [
-      isUploading,
-      handleButtonClick,
-      handleFileChange,
-      fileInputRef,
-      blob,
-      onChange,
-    ],
+    [isUploading, handleButtonClick, handleFileChange, fileInputRef],
   );
 }
 
