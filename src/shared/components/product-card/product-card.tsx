@@ -20,7 +20,7 @@ export function ProductCard({ product }: ProductCardProps) {
             alt={product.title}
             width={200}
             height={250}
-            className="rounded-lg aspect-5/4"
+            className="rounded-lg aspect-5/4 object-cover"
           />
         </Link>
       </div>
