@@ -12,7 +12,7 @@ export function useUpload() {
   const { mutate: uploadFiles, isPending: isUploading } = useMutation({
     mutationKey: ['upload files'],
     //  mutationFn: (formData: FormData) => fileService.upload(formData),
-    mutationFn: (file: File) => upload(file),
+    mutationFn: (file: FormData) => upload(file),
     onSuccess(data) {
       // onChange(data.map((file) => file.url));
 
@@ -32,10 +32,11 @@ export function useUpload() {
       // if (selectedFiles) {
       //   const fileArray = Array.from(selectedFiles);
 
-      //   const formData = new FormData();
+      const formData = new FormData();
       //   fileArray.forEach((file) => formData.append('files', file));
+      formData.append('file', file);
 
-      uploadFiles(file);
+      uploadFiles(formData);
       // }
     },
     [uploadFiles],

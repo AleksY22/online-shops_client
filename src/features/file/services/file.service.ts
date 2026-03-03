@@ -1,9 +1,11 @@
 import { PutBlobResult } from '@vercel/blob';
 
-export async function upload(file: File) {
-  const response = await fetch(`/api/upload?filename=${file.name}`, {
+export async function upload(formData: FormData) {
+  const imageFile = formData.get('file') as File;
+
+  const response = await fetch(`/api/upload?filename=${imageFile.name}`, {
     method: 'POST',
-    body: file,
+    body: imageFile,
   });
   return (await response.json()) as PutBlobResult;
 }
