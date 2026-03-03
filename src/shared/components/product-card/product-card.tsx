@@ -19,9 +19,8 @@ export function ProductCard({ product }: ProductCardProps) {
             src={product.images[0]}
             alt={product.title}
             width={200}
-            height={250}
-            fill
-            className="rounded-lg aspect-5/4 object-cover"
+            height={200}
+            className="rounded-lg aspect-5/4 w-auto h-auto"
           />
         </Link>
       </div>
