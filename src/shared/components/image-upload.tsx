@@ -23,7 +23,14 @@ export function ImageUpload({ isDisabled, value }: ImageUploadProps) {
     <div>
       {blob && (
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6 gap-5">
-          <Image src={blob!.url} alt="Картинка" fill className="object-cover" />
+          <Image
+            src={blob!.url}
+            width={200}
+            height={200}
+            alt="Картинка"
+            fill
+            className="object-cover"
+          />
         </div>
       )}
       {/* <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6 gap-5">
