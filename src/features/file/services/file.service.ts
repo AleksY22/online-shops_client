@@ -1,13 +1,20 @@
 import { PutBlobResult } from '@vercel/blob';
 
 export async function upload(formData: FormData) {
-  const imageFile = formData.get('file') as File;
+  const images: string[] = [];
 
-  const response = await fetch(`/api/upload?filename=${imageFile.name}`, {
-    method: 'POST',
-    body: imageFile,
-  });
-  return (await response.json()) as PutBlobResult;
+  const imageFiles = formData.getAll('files') as File[];
+
+  for (const imageFile of imageFiles) {
+    const response = await fetch(`/api/upload?filename=${imageFile.name}`, {
+      method: 'POST',
+      body: imageFile,
+    });
+    const image = (await response.json()) as PutBlobResult;
+    images.push(image.url);
+  }
+
+  return images;
 }
 
 // import { IFile } from '../types/file.interface';
