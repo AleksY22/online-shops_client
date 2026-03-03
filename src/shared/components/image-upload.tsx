@@ -21,17 +21,22 @@ export function ImageUpload({ isDisabled, value }: ImageUploadProps) {
   } = useUpload();
   return (
     <div>
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6 gap-5">
-        <Image src={blob!.url} alt="Картинка" fill className="object-cover" />
-        {/* {value.map((url) => (
+      {blob && (
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6 gap-5">
+          <Image src={blob!.url} alt="Картинка" fill className="object-cover" />
+        </div>
+      )}
+      {/* <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6 gap-5">
+        <Image src={url} alt="Картинка" fill className="object-cover" />
+        {value.map((url) => (
           <div
             key={url}
             className="relative w-50 h-50 rounded-md overflow-hidden"
           >
             <Image src={url} alt="Картинка" fill className="object-cover" />
           </div>
-        ))} */}
-      </div>
+        ))}
+      </div> */}
       <Button
         type="button"
         disabled={isDisabled || isUploading}
