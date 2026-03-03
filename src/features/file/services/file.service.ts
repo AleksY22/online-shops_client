@@ -6,7 +6,9 @@ export async function upload(formData: FormData) {
   const imageFiles = formData.getAll('files') as File[];
 
   for (const imageFile of imageFiles) {
-    const response = await fetch(`/api/upload?filename=${imageFile.name}`, {
+    const originalName = `${Date.now()}-${imageFile.name}`;
+
+    const response = await fetch(`/api/upload?filename=${originalName}`, {
       method: 'POST',
       body: imageFile,
     });
