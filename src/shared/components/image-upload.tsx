@@ -25,8 +25,8 @@ export function ImageUpload({ isDisabled, value }: ImageUploadProps) {
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6 gap-5">
           <Image
             src={blob!.url}
-            width={200}
-            height={200}
+            width={20}
+            height={20}
             alt="Картинка"
             fill
             className="object-cover"
