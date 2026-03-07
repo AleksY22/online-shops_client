@@ -20,7 +20,7 @@ export function HeaderMenu() {
   const { user, isLoading } = useProfile();
 
   return (
-    <div className="hidden items-center gap-x-4 ml-auto lg:flex md:flex">
+    <div className="hidden items-center gap-x-4 ml-auto lg:flex">
       <HeaderCart />
       <Link href={PUBLIC_URL.explorer()}>
         <Button variant="ghost">Каталог</Button>

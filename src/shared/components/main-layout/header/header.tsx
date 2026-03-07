@@ -4,9 +4,9 @@ import { SearchInput } from './search-input';
 
 export function Header() {
   return (
-    <div className="flex justify-between items-center p-5 gap-x-4 h-full bg-white border-b">
+    <div className="hidden lg:flex justify-between items-center p-5 gap-x-3 h-full bg-white border-b">
       <Logo />
-      <div className="ml-auto hidden w-[40%] lg:block">
+      <div className="ml-auto w-[40%]">
         <SearchInput />
       </div>
       <HeaderMenu />

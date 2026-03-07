@@ -33,7 +33,7 @@ export function Auth() {
           loading="eager"
         />
       </div>
-      <div className="h-full flex flex-col items-center justify-center">
+      <div className="h-full flex flex-col items-center justify-center p-3 lg:p-2">
         <Card className="p-6 flex flex-col items-center justify-center w-380px">
           <CardHeader className="w-full text-center pb-5">
             <CardTitle className="pb-1 text-3xl font-bold">
