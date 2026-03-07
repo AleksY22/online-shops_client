@@ -20,7 +20,7 @@ export function HeaderMenu() {
   const { user, isLoading } = useProfile();
 
   return (
-    <div className="hidden items-center gap-x-4 ml-auto lg:flex">
+    <div className="hidden items-center gap-x-4 lg:flex">
       <HeaderCart />
       <Link href={PUBLIC_URL.explorer()}>
         <Button variant="ghost">Каталог</Button>
@@ -42,13 +42,15 @@ export function HeaderMenu() {
             </CreateStoreModal>
           )}
           <Link href={DASHBOARD_URL.home()}>
-            <Image
-              src={user.picture}
-              alt={user.name}
-              width={42}
-              height={42}
-              className="rounded-full"
-            />
+            <div className="w-10 h-10">
+              <Image
+                src={user.picture}
+                alt={user.name}
+                width={42}
+                height={42}
+                className="rounded-full"
+              />
+            </div>
           </Link>
         </>
       ) : (

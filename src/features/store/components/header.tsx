@@ -16,7 +16,7 @@ export function Header() {
   return (
     <div className="p-6 gap-x-4 h-full flex items-center bg-white border-b">
       <MobileSidebar />
-      <div className="flex items-center gap-x-4 ml-auto">
+      <div className="flex items-center gap-x-4">
         {isLoading ? (
           <Loader size="sm" />
         ) : (

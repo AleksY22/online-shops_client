@@ -14,7 +14,7 @@ import { MobileHeaderMenu } from './mobile-header-menu';
 export function MobileHeaderSidebar() {
   return (
     <Sheet>
-      <SheetTrigger className="lg:hidden pr-4 hover:opacity-75">
+      <SheetTrigger asChild className="hover:opacity-75">
         <Menu />
       </SheetTrigger>
       <SheetContent side="right" className="p-0 bg-white">
@@ -22,6 +22,7 @@ export function MobileHeaderSidebar() {
           <SheetTitle aria-describedby={undefined} />
           <SheetDescription aria-describedby={undefined} />
         </SheetHeader>
+
         <MobileHeaderMenu />
       </SheetContent>
     </Sheet>
