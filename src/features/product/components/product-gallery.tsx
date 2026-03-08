@@ -13,24 +13,33 @@ export function ProductGallery({ product }: ProductGalleryProps) {
 
   return (
     <div>
-      <Image
-        src={product.images[currentIndex]}
-        alt={product.title}
-        width={400}
-        height={400}
-        className="rounded-lg"
-      />
-      <div className="gflex mt-6 gap-6">
+      <div className="w-100 h-120 overflow-hidden rounded-lg">
+        <Image
+          src={product.images[currentIndex]}
+          alt={product.title}
+          width={400}
+          height={400}
+          className="rounded-lg object-fill overflow-hidden"
+        />
+      </div>
+
+      <div className="flex mt-6 gap-6">
         {product.images.map((image, index) => (
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
             className={cn(
-              'duration-300 border rounded-lg overflow-hidden',
+              'duration-300 border rounded-lg overflow-hidden w-25 h-25',
               index === currentIndex ? 'border-black' : 'border-transparent',
             )}
           >
-            <Image src={image} alt={product.title} width={100} height={100} />
+            <Image
+              src={image}
+              alt={product.title}
+              width={120}
+              height={150}
+              className="object-fill"
+            />
           </button>
         ))}
       </div>
